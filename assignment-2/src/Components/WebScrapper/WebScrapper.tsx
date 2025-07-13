@@ -15,7 +15,6 @@ const WebScrapper: React.FC = () => {
     try {
       const response = await axios.post("http://localhost:3001/summarise", {
         url: ScrapperInput,
-        fullText: "Placeholder full text",
         translate: translateEnabled,
         sourceLang,
         targetLang

@@ -3,15 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  
   "scripts": {
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "dev": "concurrently \"vite --host\" \"npm run start:backend\"",
-    "start:backend": "tsc -p tsconfig.node.json && node dist/index.js",
-    "build": "tsc -b && vite build"
-  },
+  "dev": "concurrently \"vite --host\" \"npm run start:backend\"",
+    "start:backend": "tsc -p tsconfig.node.json && node dist/index.js","postbuild": "copy translate.py dist",
+  "build": "tsc -b && vite build",
+  "preview": "vite preview",
+  "lint": "eslint ."
+},
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.10.0",
     "cheerio": "^1.1.0",
     "class-variance-authority": "^0.7.1",
