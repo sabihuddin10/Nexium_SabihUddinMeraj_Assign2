@@ -32,7 +32,7 @@ let db: any;
 // 🔁 Translate using Python script
 async function translateText(text: string, from: string, to: string): Promise<string | null> {
   return new Promise((resolve, reject) => {
-    const scriptPath = path.join(__dirname, "translate.py"); // ✅ Absolute path
+    const scriptPath = path.join(process.cwd(), "translate.py");
 
     const python = spawn("python", [scriptPath, from, to, text], {
     stdio: ["pipe", "pipe", "pipe"],
