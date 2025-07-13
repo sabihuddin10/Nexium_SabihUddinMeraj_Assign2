@@ -6,7 +6,8 @@
   
   "scripts": {
   "dev": "concurrently \"vite --host\" \"npm run start:backend\"",
-    "start:backend": "tsc -p tsconfig.node.json && node dist/index.js","postbuild": "copy translate.py dist",
+  "start:backend": "tsc -p tsconfig.node.json && node dist/index.js",
+  "postbuild": "shx cp translate.py dist",
   "build": "tsc -b && vite build",
   "preview": "vite preview",
   "lint": "eslint ."
