@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 const WebScrapper: React.FC = () => {
   const [ScrapperInput, setScrapperInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [translateEnabled, setTranslateEnabled] = useState(false);
   const [sourceLang, setSourceLang] = useState("en");
   const [targetLang, setTargetLang] = useState("ur");
-
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const WebScrap2Func = async () => {
     if (!ScrapperInput.trim()) return;
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3001/summarise", {
+      const response = await axios.post(`${backendURL}/summarise`, {
         url: ScrapperInput,
         translate: translateEnabled,
         sourceLang,
