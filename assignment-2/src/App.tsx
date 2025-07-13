@@ -1,7 +1,7 @@
-import NavBar from "./Components/NavBar/NavBar"
-import WebWrapper from "./Components/WebWrapper/WebWrapper"
+import NavBar from "./Components/NavBar/NavBar.tsx"
+import WebWrapper from "./Components/WebWrapper/WebWrapper.tsx"
 // import QuoteGenerator from "./components/QuoteGenerator/QuoteGenerator"
-import WebScrapper from "./Components/WebScrapper/WebScrapper"
+import WebScrapper from "./Components/WebScrapper/WebScrapper.tsx"
 function App() {
   return (
     <>
