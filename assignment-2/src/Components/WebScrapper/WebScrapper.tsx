@@ -5,9 +5,9 @@ const WebScrapper: React.FC = () => {
   const [ScrapperInput, setScrapperInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [translateEnabled, setTranslateEnabled] = useState(false);
+  const [summaryEnabled, setSummaryEnabled] = useState(false);
   const [sourceLang, setSourceLang] = useState("en");
   const [targetLang, setTargetLang] = useState("ur");
-  const [summaryEnabled, setSummaryEnabled] = useState(false);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -19,6 +19,7 @@ const WebScrapper: React.FC = () => {
       const response = await axios.post(`${backendURL}/summarise`, {
         url: ScrapperInput,
         translate: translateEnabled,
+        summary: summaryEnabled, // ✅ include summary flag
         sourceLang,
         targetLang
       });
@@ -52,7 +53,7 @@ const WebScrapper: React.FC = () => {
         {loading ? "Saving..." : "Scrape & Save"}
       </button>
 
-      {/* Two checkboxes on the same line */}
+      {/* Checkboxes on same line */}
       <div className="flex items-center justify-between w-full gap-4">
         {/* Enable Translation */}
         <div className="flex items-center gap-2">
