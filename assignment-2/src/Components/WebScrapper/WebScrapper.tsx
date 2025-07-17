@@ -36,7 +36,7 @@ const WebScrapper: React.FC = () => {
 
   return (
     <div className="w-[90%] sm:w-[400px] md:w-[450px] lg:w-[500px] bg-white p-6 md:p-8 rounded-2xl border border-pink-400 shadow-lg flex flex-col items-center gap-6 
-                    absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
       <h2 className="text-2xl font-semibold text-gray-400 tracking-wide">Web Scraper</h2>
 
       <input
