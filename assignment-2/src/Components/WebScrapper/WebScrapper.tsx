@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import TranslationDisplay from "./TranslationDisplay";
 
 const WebScrapper: React.FC = () => {
+  const [scrapedResult, setScrapedResult] = useState<any>(null);
   const [ScrapperInput, setScrapperInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [translateEnabled, setTranslateEnabled] = useState(false);
   const [summaryEnabled, setSummaryEnabled] = useState(false);
   const [sourceLang, setSourceLang] = useState("en");
   const [targetLang, setTargetLang] = useState("ur");
+
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -25,6 +28,9 @@ const WebScrapper: React.FC = () => {
       });
 
       console.log("✅ MongoDB Response:", response.data);
+      const MongoOnly = response.data.mongo;
+      setScrapedResult(MongoOnly);
+      console.log("MongoOnly:", MongoOnly);
       alert("Saved to MongoDB!");
     } catch (err) {
       console.error("❌ Error saving to Mongo:", err);
@@ -124,6 +130,33 @@ const WebScrapper: React.FC = () => {
           </div>
         </div>
       )}
+      {scrapedResult && (
+    <div className="flex flex-col md:flex-row gap-4 w-full overflow-hidden">
+  <div className="flex-1 min-w-0">
+    <TranslationDisplay
+      label="Language 1 Summary"
+      content={scrapedResult.fullText?.slice(0, 500) || "No content available."}
+    />
+  </div>
+
+  {scrapedResult.translationDetails && (
+    <div className="flex-1 min-w-0">
+      <TranslationDisplay
+        label={`Translated Summary (${scrapedResult.translationDetails.to.toUpperCase()})`}
+        content={
+          scrapedResult.translationDetails.translatedContent?.slice(0, 500) ||
+          "No translation available."
+        }
+        isRTL={["ur", "ar", "fa", "he"].includes(scrapedResult.translationDetails.to)}
+      />
+    </div>
+  )}
+</div>
+
+)}
+
+
+
     </div>
   );
 };

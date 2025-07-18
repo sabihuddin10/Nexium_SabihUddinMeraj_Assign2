@@ -93,7 +93,7 @@ async function startServer() {
         const finalUrl = url.startsWith("http") ? url : `https://${url}`;
         const response = await axios.get(finalUrl, { timeout: 10000 });
         const $ = cheerio.load(response.data);
-
+$("iframe, script, style, noscript, link, meta").remove(); 
         const contentText =
           $("article").text() ||
           $("main").text() ||
@@ -159,11 +159,15 @@ async function startServer() {
 
         // ✅ Final response
         res.json({
-          message: "Saved",
-          id: result.insertedId,
-          preview: (translationDetails?.translatedContent || fullText).slice(0, 300) + "...",
-          ...(summaryResult ? { supabase: summaryResult } : {}),
-        });
+  message: "Saved",
+  mongo: {
+    id: result.insertedId,
+    url: finalUrl,
+    fullText,
+    translationDetails,
+  },
+  supabase: summaryResult || null,
+});
 
       } catch (err: any) {
         console.error("❌ Scraping or saving failed:", err.message || err);
