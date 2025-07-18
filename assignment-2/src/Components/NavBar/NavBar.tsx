@@ -8,9 +8,9 @@ type NavItem = {
 
 const navLinks: NavItem[] = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" },
+  { name: "About", href: "/" },
+  { name: "Services", href: "/" },
+  { name: "Contact", href: "/" },
 ]
 
 const NavBar: React.FC = () => {
