@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import TranslationDisplay from "./TranslationDisplay";
+import Spinner from "../UtilityComps/Spinner";
 
 const WebScrapper: React.FC = () => {
   const [scrapedResult, setScrapedResult] = useState<any>(null);
@@ -54,14 +55,16 @@ const WebScrapper: React.FC = () => {
         placeholder="Enter a URL to scrape (eg. www.google.com)"
         onChange={(e) => setScrapperInput(e.target.value)}
       />
-
       <button
-        className="w-full h-12 bg-pink-500 text-white font-medium rounded-lg hover:bg-pink-600 transition duration-200"
-        onClick={WebScrap2Func}
-        disabled={!ScrapperInput.trim()}
-      >
-        {loading ? "Saving..." : "Scrape & Save"}
-      </button>
+  className="w-full h-12 bg-pink-500 text-white font-medium rounded-lg hover:bg-pink-600 transition duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+  onClick={WebScrap2Func}
+  disabled={!ScrapperInput.trim()}
+>
+  {loading && <Spinner />}
+  {loading ? "Saving..." : "Scrape & Save"}
+</button>
+
+      
 
       {/* Checkboxes on same line */}
       <div className="flex items-center justify-between w-full gap-4">
